@@ -7,6 +7,8 @@ conda activate latentsync
 # Install ffmpeg
 conda install -y -c conda-forge ffmpeg
 
+conda install -c conda-forge libgcc-ng libstdcxx-ng
+
 # Python dependencies
 pip install -r requirements.txt
 
