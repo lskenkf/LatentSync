@@ -27,6 +27,11 @@ fi
 conda init bash
 source ~/.bashrc
 
+# Accept conda terms of service
+echo "📋 Accepting conda terms of service..."
+conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main
+conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
+
 # Create a new conda environment
 echo "📦 Creating conda environment 'latentsync' with Python 3.10.13..."
 conda create -y -n latentsync python=3.10.13
