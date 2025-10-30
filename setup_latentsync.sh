@@ -7,6 +7,26 @@ set -e  # Exit on any error
 
 echo "🚀 Starting LatentSync setup..."
 
+# Install Miniconda if not already installed
+echo "🐍 Installing Miniconda..."
+if ! command -v conda &> /dev/null; then
+    echo "Conda not found. Installing Miniconda..."
+    wget -q https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+    chmod +x Miniconda3-latest-Linux-x86_64.sh
+    ./Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/miniconda3
+    echo 'export PATH="$HOME/miniconda3/bin:$PATH"' >> ~/.bashrc
+    source ~/.bashrc
+    export PATH="$HOME/miniconda3/bin:$PATH"
+    rm Miniconda3-latest-Linux-x86_64.sh
+    echo "✅ Miniconda installed successfully"
+else
+    echo "✅ Conda already installed"
+fi
+
+# Initialize conda for bash
+conda init bash
+source ~/.bashrc
+
 # Create a new conda environment
 echo "📦 Creating conda environment 'latentsync' with Python 3.10.13..."
 conda create -y -n latentsync python=3.10.13
